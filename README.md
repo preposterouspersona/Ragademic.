@@ -84,13 +84,6 @@ ragademic/
 
 ---
 
-## Screenshots
-
-![Upload](assets/upload.png)
-<!-- Add screenshot of PDF upload flow -->
-
-![Chat](assets/chat.png)
-<!-- Add screenshot of chat with sources -->
 
 ---
 
