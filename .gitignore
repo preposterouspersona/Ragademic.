@@ -1,0 +1,23 @@
+# Environment
+.env
+*.swp
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+env/
+
+# Jupyter
+.ipynb_checkpoints/
+*-checkpoint.ipynb
+*-checkpoint.txt
+
+# Data — don't push PDFs or vector DB to git
+data/
+
+# OS
+.DS_Store
+Thumbs.db

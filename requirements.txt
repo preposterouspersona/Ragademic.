@@ -1,0 +1,19 @@
+--extra-index-url https://download.pytorch.org/whl/cpu
+
+torch==2.3.1+cpu
+
+langchain
+langchain-core
+langchain-community
+langchain-groq
+langchain-text-splitters
+
+pymupdf
+pypdf
+
+sentence-transformers
+chromadb
+
+streamlit
+python-dotenv
+tqdm
