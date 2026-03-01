@@ -21,14 +21,16 @@ class GroqLLM:
         print(f"Groq LLM ready — model: {self.model_name}")
 
     def generate(self, query: str, context: str) -> str:
-        prompt = f"""You are a helpful AI assistant. Use the following context to answer the question accurately and concisely. If the context doesn't contain enough information, say so.
+        prompt = f"""You are a helpful AI assistant. Answer the question using the context below.
+        Be direct and thorough. If the context contains relevant information, use it fully — do not refuse or hedge unnecessarily.
+        Only say the context is insufficient if it genuinely contains nothing related to the question.
 
-Context:
-{context}
+        Context:
+        {context}
 
-Question: {query}
+        Question: {query}
 
-Answer:"""
+        Answer:"""
         try:
             response = self.llm.invoke([HumanMessage(content=prompt)])
             return response.content
