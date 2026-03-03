@@ -15,11 +15,11 @@ load_dotenv()
 class RAGPipeline:
 
     def __init__(
-        self,
-        vector_db_path: str = "./data/vector_db",
-        chunk_size: int = 1000,
-        chunk_overlap: int = 200,
-        top_k: int = 3,
+            self,
+            vector_db_path: str = "./data/vector_db",
+            chunk_size: int = 1500,
+            chunk_overlap: int = 300,
+            top_k: int = 7,
     ):
         self.chunk_size = chunk_size
         self.chunk_overlap = chunk_overlap
