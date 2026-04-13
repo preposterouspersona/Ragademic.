@@ -2,7 +2,7 @@
 
 # Ragademic
 
-> A full-stack RAG (Retrieval-Augmented Generation) pipeline that lets you query your own documents using semantic search and large language models. Upload a PDF, ask a question, get a precise answer grounded in your content — with source citations.
+> A full-stack RAG (Retrieval-Augmented Generation) pipeline that lets you query your own documents using semantic search and large language models. Upload a PDF, ask a question, get a precise answer grounded in your content with source citations.
 
 
 
@@ -29,13 +29,13 @@ https://github.com/user-attachments/assets/c85e0743-32ab-43d2-9ce2-8ccfc9168950
 
 ## What's actually happening under the hood
 
-Most "RAG apps" are thin wrappers around LangChain's `RetrievalQA`. Ragademic is built from scratch — every layer of the pipeline is implemented explicitly so the system is fully inspectable and extensible.
+Most "RAG apps" are thin wrappers around LangChain's `RetrievalQA`. Ragademic is built from scratch , every layer of the pipeline is implemented explicitly so the system is fully inspectable and extensible.
 
 ### 1. Document Ingestion
 PDFs are loaded using `PyPDFLoader` and split into overlapping chunks using `RecursiveCharacterTextSplitter` (chunk size: 1000, overlap: 200). Overlapping ensures that concepts straddling chunk boundaries aren't lost. Each chunk retains its source filename, page number, and character length as metadata.
 
 ### 2. Semantic Embedding
-Chunks are encoded using `BAAI/bge-base-en-v1.5`, a retrieval-optimised sentence transformer that outperforms general-purpose models like `all-MiniLM-L6-v2` on technical and scientific content. Embeddings are L2-normalised before storage, enabling accurate cosine similarity comparisons. The model runs entirely locally — no API calls, no cost.
+Chunks are encoded using `BAAI/bge-base-en-v1.5`, a retrieval-optimised sentence transformer that outperforms general-purpose models like `all-MiniLM-L6-v2` on technical and scientific content. Embeddings are L2-normalised before storage, enabling accurate cosine similarity comparisons. The model runs entirely locally , no API calls, no cost.
 
 ### 3. Vector Storage
 Embeddings are persisted in **ChromaDB** with `hnsw:space: cosine` set explicitly on the collection. Each document chunk is stored with its embedding, raw text, and metadata as a single atomic record. ChromaDB's HNSW index enables sub-linear approximate nearest neighbour search at query time.
@@ -48,7 +48,7 @@ At query time, the user's question is encoded using the same BGE model with a re
 This prefix is part of BGE's training protocol and measurably improves retrieval precision for technical queries. The query vector is compared against all stored chunk vectors using cosine similarity. The top-k most similar chunks are returned, deduplicated by content fingerprint, and ranked by similarity score.
 
 ### 5. Generation
-Retrieved chunks are assembled into a context window and passed to **Llama 3.3 70B** via the **Groq API** — chosen for its best-in-class inference speed (typically under 1 second). A structured prompt grounds the model strictly in the retrieved context, minimising hallucinations.
+Retrieved chunks are assembled into a context window and passed to **Llama 3.3 70B** via the **Groq API** , chosen for its best-in-class inference speed (typically under 1 second). A structured prompt grounds the model strictly in the retrieved context, minimising hallucinations.
 
 ---
 
@@ -127,7 +127,7 @@ Open `http://localhost:8501` in your browser.
 ## How to Use
 
 1. Upload one or more PDFs using the sidebar
-2. Click **Index PDFs** — chunks are embedded and stored in ChromaDB
+2. Click **Index PDFs** , chunks are embedded and stored in ChromaDB
 3. Ask questions in the chat
 4. Answers are grounded in your documents with page-level source citations
 
@@ -154,5 +154,5 @@ Open `http://localhost:8501` in your browser.
 ## Notes
 
 - The embedding model (`bge-base-en-v1.5`) downloads on first run (~400MB, cached after)
-- ChromaDB persists to `./data/vector_db` — re-indexing is only needed when you change documents or the embedding model
+- ChromaDB persists to `./data/vector_db` , re-indexing is only needed when you change documents or the embedding model
 - To reset the vector store, click the **Reset** button in the sidebar
